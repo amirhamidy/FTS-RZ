@@ -8,6 +8,14 @@ body {
 }
 
 
+.size-for-icon{
+  width: 1.3em;
+  height: 1.3em;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

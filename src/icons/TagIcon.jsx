@@ -1,5 +1,5 @@
 // File: TagIcon.jsx
-export default function TagIcon({ className = "w-6 h-6", title, ...props }) {
+export default function TagIcon({ className = "size-for-icon", title, ...props }) {
     return (
         <svg xmlns="http://www.w3.org/2000/svg"
             className={className}

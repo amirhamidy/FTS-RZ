@@ -1,5 +1,5 @@
 // File: LogoutIcon.jsx
-export default function LogoutIcon({ className = "w-6 h-6", title, ...props }) {
+export default function LogoutIcon({ className = "size-for-icon", title, ...props }) {
     return (
         <svg xmlns="http://www.w3.org/2000/svg"
             className={className}
