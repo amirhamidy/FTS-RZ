@@ -8,12 +8,59 @@ body {
 }
 
 
-.size-for-icon{
+.size-for-icon {
   width: 1.3em;
   height: 1.3em;
   margin-left: 2px;
   margin-right: 2px;
 }
+
+
+ul {
+  padding: 0;
+}
+
+
+
+.bg-theme-color {
+  background-color: #ef3bfc8e;
+}
+
+
+.fs-13 {
+  font-size: 13px !important;
+}
+
+.fs-14 {
+  font-size: 14px !important;
+}
+
+.sub-menu-item {
+  font-size: 13px;
+  padding: 4px 4px;
+  border-radius: 6px;
+  transition: background-color 0.25s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: right;
+}
+
+.sub-menu-item span {
+  margin-left: 0.5rem;
+  text-align: right;
+}
+
+.sub-menu-item:hover {
+  background-color: #ef3bfc8e;
+  transform: translateX(-3px);
+}
+
+.sidebar {
+  width: 250px;
+  min-width: 250px;
+}
+
 
 
 :root {
