@@ -1,5 +1,11 @@
+body {
+  font-family: 'Vazir', sans-serif;
+}
 
-
+body {
+  direction: rtl;
+  text-align: right;
+}
 
 
 :root {
