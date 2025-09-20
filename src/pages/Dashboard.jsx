@@ -1,62 +1,37 @@
-// import React from 'react';
-// import DashboardCard from '../components/DashboardCard';
-// import { FaUsers, FaShoppingCart, FaDollarSign } from 'react-icons/fa';
-// import { Line } from 'react-chartjs-2';
+import React from 'react';
+import Sidebar from '../components/Sidebar';
+import DashboardCard from '../components/DashboardCard';
+import ActivityFeed from '../components/ActivityFeed';
+import OrdersTable from '../components/OrdersTable';
+import Charts from '../components/Charts';
+import { FaUsers, FaShoppingCart, FaDollarSign, FaTasks, FaProjectDiagram } from 'react-icons/fa';
 
-// import {
-//     Chart as ChartJS,
-//     CategoryScale,
-//     LinearScale,
-//     PointElement,
-//     LineElement,
-//     Title,
-//     Tooltip,
-//     Legend,
-// } from 'chart.js';
+export default function DashboardPage() {
+    return (
+        <div style={{ display: 'flex' }}>
+            <Sidebar />
+            <div className="dashboard-container" style={{ flex: 1, padding: '20px' }}>
+                <div className="dashboard-header">
+                    <h1 className="dashboard-title">داشبورد</h1>
+                </div>
 
-// ChartJS.register(
-//     CategoryScale,
-//     LinearScale,
-//     PointElement,
-//     LineElement,
-//     Title,
-//     Tooltip,
-//     Legend
-// );
+                <div className="cards-row">
+                    <DashboardCard title="کاربران جدید" value="1,245" icon={<FaUsers />} bgColor="dashboard-card-users" />
+                    <DashboardCard title="سفارشات" value="753" icon={<FaShoppingCart />} bgColor="dashboard-card-orders" />
+                    <DashboardCard title="درآمد" value="$12,345" icon={<FaDollarSign />} bgColor="dashboard-card-revenue" />
+                    <DashboardCard title="پروژه‌ها" value="23" icon={<FaProjectDiagram />} bgColor="dashboard-card-projects" />
+                </div>
 
-// export default function Dashboard() {
-//     const data = {
-//         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-//         datasets: [
-//             {
-//                 label: 'فروش ماهانه',
-//                 data: [12, 19, 3, 5, 2, 3],
-//                 borderColor: '#7C3AED',
-//                 backgroundColor: 'rgba(124, 58, 237, 0.2)',
-//                 tension: 0.4,
-//             },
-//         ],
-//     };
+                <div className="charts-row">
+                    <Charts type="line" title="نمودار فروش ماهانه" />
+                    <Charts type="bar" title="نمودار کاربران جدید" />
+                </div>
 
-//     return (
-//         <div className="container my-4">
-//             <h1 className="mb-4" style={{ fontFamily: 'Vazir' }}>داشبورد</h1>
-//             <div className="row mb-4">
-//                 <div className="col-md-4">
-//                     <DashboardCard title="کاربران جدید" value="1,245" icon={<FaUsers />} bgColor="bg-primary" />
-//                 </div>
-//                 <div className="col-md-4">
-//                     <DashboardCard title="سفارشات" value="753" icon={<FaShoppingCart />} bgColor="bg-success" />
-//                 </div>
-//                 <div className="col-md-4">
-//                     <DashboardCard title="درآمد" value="$12,345" icon={<FaDollarSign />} bgColor="bg-warning" />
-//                 </div>
-//             </div>
-
-//             <div className="card p-3 mb-4">
-//                 <h5>نمودار فروش</h5>
-//                 <Line data={data} />
-//             </div>
-//         </div>
-//     );
-// }
+                <div className="cards-row">
+                    <OrdersTable title="آخرین سفارش‌ها" />
+                    <ActivityFeed title="آخرین فعالیت‌ها" />
+                </div>
+            </div>
+        </div>
+    );
+}

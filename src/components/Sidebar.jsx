@@ -29,85 +29,137 @@ import SunIcon from "../icons/SunIcon";
 
 export default function Sidebar() {
     const [darkMode, setDarkMode] = useState(true);
-    const [openSection, setOpenSection] = useState(null);
-    const toggleDarkMode = () => setDarkMode(!darkMode);
-    const toggleSection = (idx) => setOpenSection(openSection === idx ? null : idx);
+    const [activeItem, setActiveItem] = useState("خانه");
+    const [collapsed, setCollapsed] = useState(false);
+    const [openMenu, setOpenMenu] = useState(null);
 
-    const menuSections = [
+    const toggleDarkMode = () => setDarkMode(!darkMode);
+    const toggleCollapse = () => setCollapsed(!collapsed);
+    const toggleSubmenu = (name) => setOpenMenu(openMenu === name ? null : name);
+
+    const menuItems = [
         {
-            title: "داشبورد", items: [{ name: "خانه", icon: <HomeIcon /> },
-            { name: "نمودار", icon: <ChartIcon /> },
-            { name: "فعالیت‌ها", icon: <ActivityIcon /> }]
+            name: "داشبورد",
+            icon: <HomeIcon />,
+            children: [
+                { name: "خانه", icon: <HomeIcon /> },
+                { name: "نمودار", icon: <ChartIcon /> },
+                { name: "فعالیت‌ها", icon: <ActivityIcon /> },
+            ],
         },
         {
-            title: "مدیریت کاربران", items: [{ name: "کاربر", icon: <UserIcon /> },
-            { name: "گروه کاربران", icon: <UsersGroupIcon /> },
-            { name: "نقش‌ها و دسترسی‌ها", icon: <ShieldIcon /> }]
+            name: "مدیریت کاربران",
+            icon: <UserIcon />,
+            children: [
+                { name: "کاربر", icon: <UserIcon /> },
+                { name: "گروه کاربران", icon: <UsersGroupIcon /> },
+                { name: "نقش‌ها و دسترسی‌ها", icon: <ShieldIcon /> },
+            ],
         },
         {
-            title: "محتوا", items: [{ name: "مقاله / بلاگ", icon: <ArticleIcon /> },
-            { name: "صفحات استاتیک", icon: <PageIcon /> },
-            { name: "رسانه", icon: <MediaIcon /> }]
+            name: "محتوا",
+            icon: <ArticleIcon />,
+            children: [
+                { name: "مقاله / بلاگ", icon: <ArticleIcon /> },
+                { name: "صفحات استاتیک", icon: <PageIcon /> },
+                { name: "رسانه", icon: <MediaIcon /> },
+            ],
         },
         {
-            title: "محصولات و فروش", items: [{ name: "سفارشات", icon: <CartIcon /> },
-            { name: "محصول / کالا", icon: <BoxIcon /> },
-            { name: "دسته‌بندی / برچسب", icon: <TagIcon /> },
-            { name: "تخفیف / کوپن", icon: <CouponIcon /> }]
+            name: "محصولات و فروش",
+            icon: <CartIcon />,
+            children: [
+                { name: "سفارشات", icon: <CartIcon /> },
+                { name: "محصول / کالا", icon: <BoxIcon /> },
+                { name: "دسته‌بندی / برچسب", icon: <TagIcon /> },
+                { name: "تخفیف / کوپن", icon: <CouponIcon /> },
+            ],
         },
         {
-            title: "مالی", items: [{ name: "درآمد / هزینه‌ها", icon: <MoneyIcon /> },
-            { name: "فاکتور / تراکنش", icon: <InvoiceIcon /> },
-            { name: "پرداخت‌ها", icon: <CreditCardIcon /> }]
+            name: "مالی",
+            icon: <MoneyIcon />,
+            children: [
+                { name: "درآمد / هزینه‌ها", icon: <MoneyIcon /> },
+                { name: "فاکتور / تراکنش", icon: <InvoiceIcon /> },
+                { name: "پرداخت‌ها", icon: <CreditCardIcon /> },
+            ],
         },
         {
-            title: "پروژه‌ها", items: [{ name: "پروژه‌ها", icon: <ProjectIcon /> },
-            { name: "کارها", icon: <TaskIcon /> },
-            { name: "تقویم / تایم‌لاین", icon: <CalendarIcon /> }]
+            name: "پروژه‌ها",
+            icon: <ProjectIcon />,
+            children: [
+                { name: "پروژه‌ها", icon: <ProjectIcon /> },
+                { name: "کارها", icon: <TaskIcon /> },
+                { name: "تقویم / تایم‌لاین", icon: <CalendarIcon /> },
+            ],
         },
         {
-            title: "تنظیمات", items: [{ name: "تنظیمات", icon: <SettingsIcon /> },
-            { name: "اعلان‌ها", icon: <NotificationIcon /> },
-            { name: "امنیت / پسورد", icon: <LockIcon /> }]
+            name: "تنظیمات",
+            icon: <SettingsIcon />,
+            children: [
+                { name: "تنظیمات", icon: <SettingsIcon /> },
+                { name: "اعلان‌ها", icon: <NotificationIcon /> },
+                { name: "امنیت / پسورد", icon: <LockIcon /> },
+            ],
         },
         {
-            title: "عمومی", items: [{ name: "جستجو", icon: <SearchIcon /> },
-            { name: "زنگ نوتیفیکیشن", icon: <BellIcon /> },
-            { name: "خروج", icon: <LogoutIcon /> }]
+            name: "عمومی",
+            icon: <SearchIcon />,
+            children: [
+                { name: "جستجو", icon: <SearchIcon /> },
+                { name: "زنگ نوتیفیکیشن", icon: <BellIcon /> },
+                { name: "خروج", icon: <LogoutIcon /> },
+            ],
         },
     ];
 
     return (
-        <div className="d-flex flex-column p-3 text-white" style={{ width: "300px",overflowY : "scroll", height: "100vh", backgroundColor: darkMode ? "black" : "white",  color: darkMode ? "white" : "black", fontFamily: "Vazir, sans-serif", transition: "all 0.3s", direction: "rtl" }}>
-            <div className="d-flex justify-content-between align-items-center mb-4">
-                <h2 className="fs-14 fw-bold text-white">پنل مدیریت</h2>
-                <button onClick={toggleDarkMode} className="btn btn-sm" style={{ backgroundColor: darkMode ? "#532954ff" : "#cbbbdbff", color: "#fff", borderRadius: "6px" }}>
-                    {darkMode ? <MoonIcon /> : <SunIcon />}
-                </button>
-            </div>
-            {menuSections.map((section, idx) => (
-                <div key={idx} className="mb-3">
-                    <div
-                        onClick={() => toggleSection(idx)}
-                        className={`fs-14 fw-bold mb-2 py-2`}
-                        style={{ cursor: "pointer", userSelect: "none" ,color: darkMode ? "white" : "black", }}>
-                        {section.title}
-                    </div>
-                    {openSection === idx && (
-                        <ul className="nav flex-column">
-                            {section.items.map((item, i) => (
-                                <li key={i} className="mb-1 sub-menu-item">
-                                    <a href="#" className="nav-link d-flex align-items-center" style={{ fontSize: "14px", padding: "8px 12px", borderRadius: "6px", transition: "all 0.2s" , color: darkMode ? "white" : "black", }}>
-                                        <span className="me-2">{item.icon}</span>
-                                        <span>{item.name}</span>
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
-                    )}
+        <div className={`sidebar ${darkMode ? "dark" : "light"} ${collapsed ? "collapsed" : ""}`}>
+            <div className="sidebar-header">
+                {!collapsed && <h2 className="logo">پنل مدیریت</h2>}
+                <div className="actions">
+                    <button onClick={toggleCollapse} className="collapse-btn">≡</button>
+                    <button onClick={toggleDarkMode} className="toggle-theme-btn">
+                        {darkMode ? <MoonIcon /> : <SunIcon />}
+                    </button>
                 </div>
-            ))}
-            <div className="mt-auto text-center" style={{ fontSize: "13px", color: "#aaa" }}>© 2025 پنل مدیریت</div>
+            </div>
+            <ul className="menu">
+                {menuItems.map((item, i) => (
+                    <li key={i}>
+                        <div
+                            className={`menu-item ${activeItem === item.name ? "active" : ""} ${openMenu === item.name ? "open" : ""}`}
+                            onClick={() => {
+                                toggleSubmenu(item.name);
+                                setActiveItem(item.name);
+                            }}
+                        >
+                            <div className="menu-right">
+                                <span className="icon">{item.icon}</span>
+                                {!collapsed && <span className="text">{item.name}</span>}
+                            </div>
+                            {!collapsed && item.children && (
+                                <span className={`arrow ${openMenu === item.name ? "open" : ""}`}>›</span>
+                            )}
+                        </div>
+                        {item.children && openMenu === item.name && !collapsed && (
+                            <ul className="submenu">
+                                {item.children.map((sub, j) => (
+                                    <li
+                                        key={j}
+                                        className={`submenu-item ${activeItem === sub.name ? "active" : ""}`}
+                                        onClick={() => setActiveItem(sub.name)}
+                                    >
+                                        <span className="icon">{sub.icon}</span>
+                                        <span className="text">{sub.name}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                    </li>
+                ))}
+            </ul>
+            {!collapsed && <div className="sidebar-footer">© 2025 پنل مدیریت</div>}
         </div>
     );
 }
