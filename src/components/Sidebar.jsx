@@ -78,10 +78,10 @@ export default function Sidebar() {
     ];
 
     return (
-        <div className="d-flex flex-column p-3 text-white" style={{ width: "300px",overflowY : "scroll", height: "100vh", backgroundColor: darkMode ? "#121212" : "#1e1e1e", fontFamily: "Vazir, sans-serif", transition: "all 0.3s", direction: "rtl" }}>
+        <div className="d-flex flex-column p-3 text-white" style={{ width: "300px",overflowY : "scroll", height: "100vh", backgroundColor: darkMode ? "black" : "white",  color: darkMode ? "white" : "black", fontFamily: "Vazir, sans-serif", transition: "all 0.3s", direction: "rtl" }}>
             <div className="d-flex justify-content-between align-items-center mb-4">
                 <h2 className="fs-14 fw-bold text-white">پنل مدیریت</h2>
-                <button onClick={toggleDarkMode} className="btn btn-sm" style={{ backgroundColor: darkMode ? "#3b2a6b" : "#6b3b99", color: "#fff", borderRadius: "6px" }}>
+                <button onClick={toggleDarkMode} className="btn btn-sm" style={{ backgroundColor: darkMode ? "#532954ff" : "#cbbbdbff", color: "#fff", borderRadius: "6px" }}>
                     {darkMode ? <MoonIcon /> : <SunIcon />}
                 </button>
             </div>
@@ -89,15 +89,15 @@ export default function Sidebar() {
                 <div key={idx} className="mb-3">
                     <div
                         onClick={() => toggleSection(idx)}
-                        className={`fs-14 fw-bold text-white mb-2 py-2`}
-                        style={{ cursor: "pointer", userSelect: "none" }}>
+                        className={`fs-14 fw-bold mb-2 py-2`}
+                        style={{ cursor: "pointer", userSelect: "none" ,color: darkMode ? "white" : "black", }}>
                         {section.title}
                     </div>
                     {openSection === idx && (
                         <ul className="nav flex-column">
                             {section.items.map((item, i) => (
                                 <li key={i} className="mb-1 sub-menu-item">
-                                    <a href="#" className="nav-link d-flex align-items-center text-white" style={{ fontSize: "14px", padding: "8px 12px", borderRadius: "6px", transition: "all 0.2s" }}>
+                                    <a href="#" className="nav-link d-flex align-items-center" style={{ fontSize: "14px", padding: "8px 12px", borderRadius: "6px", transition: "all 0.2s" , color: darkMode ? "white" : "black", }}>
                                         <span className="me-2">{item.icon}</span>
                                         <span>{item.name}</span>
                                     </a>
