@@ -14,12 +14,7 @@ export default function OrdersTable({ title }) {
             <div className="DASH-orders-table-wrapper">
                 <table className="DASH-orders-table">
                     <thead>
-                        <tr>
-                            <th>شماره</th>
-                            <th>کاربر</th>
-                            <th>مبلغ</th>
-                            <th>وضعیت</th>
-                        </tr>
+                        <tr><th>شماره</th><th>کاربر</th><th>مبلغ</th><th>وضعیت</th></tr>
                     </thead>
                     <tbody>
                         {orders.map((order, i) => (
@@ -27,18 +22,7 @@ export default function OrdersTable({ title }) {
                                 <td>{order.id}</td>
                                 <td>{order.user}</td>
                                 <td>{order.amount}</td>
-                                <td>
-                                    <span
-                                        className={`DASH-orders-badge ${order.status === 'پرداخت شده'
-                                                ? 'DASH-status-paid'
-                                                : order.status === 'در انتظار'
-                                                    ? 'DASH-status-pending'
-                                                    : 'DASH-status-cancelled'
-                                            }`}
-                                    >
-                                        {order.status}
-                                    </span>
-                                </td>
+                                <td><span className={`DASH-orders-badge ${order.status === 'پرداخت شده' ? 'DASH-status-paid' : order.status === 'در انتظار' ? 'DASH-status-pending' : 'DASH-status-cancelled'}`}>{order.status}</span></td>
                             </tr>
                         ))}
                     </tbody>

@@ -14,9 +14,7 @@ export default function ActivityFeed({ title }) {
             <ul className="DASH-activity-list">
                 {activities.map((act, i) => (
                     <li key={i} className="DASH-activity-item">
-                        <div className="DASH-activity-text">
-                            <strong>{act.user}</strong> {act.action}
-                        </div>
+                        <div className="DASH-activity-text"><strong>{act.user}</strong> {act.action}</div>
                         <small className="DASH-activity-time">{act.time}</small>
                     </li>
                 ))}
