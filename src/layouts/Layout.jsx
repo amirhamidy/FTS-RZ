@@ -1,13 +1,22 @@
-import { Outlet } from "react-router-dom";
-import Sidebar from "../components/Sidebar";
-import Header from "../components/Header";
-import DashboardPage from "../pages/Dashboard";
-
+import React, { useState } from 'react';
+import Sidebar from '../components/Sidebar';
+import DashboardPage from '../pages/Dashboard';
 export default function Layout() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
+
   return (
-    <div className="d-flex justify-content-between">
-      <Sidebar />
-      <DashboardPage/>
+    <div className="layout-container">
+      <div className={`sidebar-wrapper ${sidebarOpen ? 'active' : ''}`}>
+        <Sidebar />
+      </div>
+      <div className="dashboard-wrapper">
+        <button className="btn btn-sm mb-3 d-lg-none" onClick={toggleSidebar}>
+          {sidebarOpen ? 'بستن منو' : 'باز کردن منو'}
+        </button>
+        <DashboardPage />
+      </div>
     </div>
   );
 }
