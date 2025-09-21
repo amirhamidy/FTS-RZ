@@ -33,7 +33,7 @@ export default function DashboardPage() {
             </div>
 
             <div className="panel-m-dashboard-main-row">
-                <div className="panel-m-dashboard-left-column">
+                <div className="panel-m-dashboard-left-column row">
                     <AdvancedChart type="line" title="نمودار خطی فروش" />
                     <AdvancedChart type="bar" title="نمودار ستونی درآمد" />
                     <AdvancedChart type="pie" title="نمودار دایره‌ای مشتریان" />
