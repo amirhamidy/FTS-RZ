@@ -1,5 +1,8 @@
 import React from "react";
-import { UsersGroupIcon, ChartIcon, SettingsIcon } from "../icons";
+import UsersGroupIcon from "../icons/UsersGroupIcon";
+import ChartIcon from "../icons/ChartIcon";
+import SettingsIcon from "../icons/SettingsIcon";
+import CustomChart from "../components/Charts";
 
 export default function DashboardPage() {
     const stats = [
@@ -28,8 +31,6 @@ export default function DashboardPage() {
                     <CustomChart type="pie" title="نمودار دایره‌ای" />
                 </div>
                 <div className="DASH-right-column">
-                    <OrdersTable title="سفارشات اخیر" />
-                    <ActivityFeed title="فعالیت کاربران" />
                 </div>
             </div>
         </div>
