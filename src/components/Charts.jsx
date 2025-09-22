@@ -27,10 +27,11 @@ ChartJS.register(
     Filler
 );
 
+ChartJS.defaults.font.family = "'Vazir', sans-serif";
+ChartJS.defaults.font.size = 13;
+ChartJS.defaults.color = "#374151";
+
 export default function AdvancedChart({ type = 'line', title, dataSets }) {
-
-    const palette = ['#3B82F6', '#9333EA', '#F59E0B', '#10B981', '#EF4444', '#6366F1', '#EC4899'];
-
     const data = (canvas) => {
         const ctx = canvas?.getContext('2d');
         let gradient1 = '#3b6af6ad';
@@ -60,7 +61,7 @@ export default function AdvancedChart({ type = 'line', title, dataSets }) {
                     pointRadius: 6,
                     pointHoverRadius: 8,
                     pointBackgroundColor: '#3bf6f3ff',
-                    pointBorderRadius: 7, // ← اضافه شد
+                    pointBorderRadius: 7,
                 },
                 {
                     label: 'درآمد',
@@ -73,9 +74,8 @@ export default function AdvancedChart({ type = 'line', title, dataSets }) {
                     pointRadius: 6,
                     pointHoverRadius: 8,
                     pointBackgroundColor: '#3fea33ff',
-                    pointBorderRadius: 7, // ← اضافه شد
+                    pointBorderRadius: 7,
                 }
-
             ]
         };
     };
@@ -86,7 +86,13 @@ export default function AdvancedChart({ type = 'line', title, dataSets }) {
         animation: { duration: 1200, easing: 'easeOutQuart' },
         interaction: { mode: 'nearest', intersect: false },
         plugins: {
-            legend: { position: 'top', labels: { color: '#374151', font: { size: 13, weight: '600' } } },
+            legend: {
+                position: 'top',
+                labels: {
+                    color: '#374151',
+                    font: { family: 'Vazir', size: 13, weight: '600' }
+                }
+            },
             tooltip: {
                 backgroundColor: '#1f2937',
                 titleColor: '#fff',
@@ -95,11 +101,19 @@ export default function AdvancedChart({ type = 'line', title, dataSets }) {
                 borderColor: '#4b5563',
                 padding: 12,
                 cornerRadius: 8,
+                titleFont: { family: 'Vazir', size: 13, weight: 'bold' },
+                bodyFont: { family: 'Vazir', size: 12 }
             }
         },
         scales: {
-            x: { ticks: { color: '#375141ff', font: { size: 12 } }, grid: { color: 'rgba(0,0,0,0.05)' } },
-            y: { ticks: { color: '#3e5137ff', font: { size: 12 } }, grid: { color: 'rgba(0,0,0,0.05)' } }
+            x: {
+                ticks: { color: '#375141ff', font: { family: 'Vazir', size: 12 } },
+                grid: { color: 'rgba(0,0,0,0.05)' }
+            },
+            y: {
+                ticks: { color: '#3e5137ff', font: { family: 'Vazir', size: 12 } },
+                grid: { color: 'rgba(0,0,0,0.05)' }
+            }
         }
     };
 
@@ -115,7 +129,7 @@ export default function AdvancedChart({ type = 'line', title, dataSets }) {
     return (
         <div className="panel-m-chart-card mx-1" style={{ width: '49%' }}>
             <h5 className="panel-m-chart-title">{title}</h5>
-            <div style={{ width: '100%', height: '320px', position: 'relative' }}>
+            <div style={{ width: '100%', height: '320px', position: 'relative', padding: "10px"}}>
                 {renderChart()}
             </div>
         </div>
